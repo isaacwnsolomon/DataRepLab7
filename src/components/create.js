@@ -16,16 +16,19 @@ function Create() {
 const handleSubmit = (e) => {
   e.preventDefault();
   
+  //Logs values to console
   console.log(`Title: ${title}, Year: ${year}, Poster: ${poster}`);
   
+  //Creating movie object 
   const movie = {
     title: title,
     year: year,
     poster: poster
   };
-  
+  // Posting to api the movie data 
   axios.post('http://localhost:4000/api/movies', movie)
     .then((res) => console.log(res.data))
+    //Handles error if request fails 
     .catch((err) => console.log(err.data));
 };
   
