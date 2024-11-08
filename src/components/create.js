@@ -2,6 +2,8 @@
 
 // Importing useState hook from react
 import { useState } from "react";
+import axios from "axios";
+
 
 function Create() {
   // Defining state variables using useState
@@ -9,14 +11,23 @@ function Create() {
   const[year, setYear] = useState('');
   const[poster,setPoster] = useState('');
 
-  // handleSubmit function to handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Logging state to console
-    console.log(title);
-    console.log(year);
-    console.log(poster);
-  }
+
+  // create.js
+const handleSubmit = (e) => {
+  e.preventDefault();
+  
+  console.log(`Title: ${title}, Year: ${year}, Poster: ${poster}`);
+  
+  const movie = {
+    title: title,
+    year: year,
+    poster: poster
+  };
+  
+  axios.post('http://localhost:4000/api/movies', movie)
+    .then((res) => console.log(res.data))
+    .catch((err) => console.log(err.data));
+};
   
 
   return (
