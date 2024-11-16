@@ -59,9 +59,16 @@ app.post('/api/movies',(req,res)=>{
 
 // Connecting to mongo DB
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://admin:admin@admin.z44it.mongodb.net/');
+mongoose.connect('mongodb+srv://admin:admin@admin.z44it.mongodb.net/myMovieDB');
 
-
+// Defining schema and data model 
+const movieSchema = new mongoose.Schema({
+    title: String,
+    year: String,
+    poster: String
+  });
+ 
+  const Movie = mongoose.model('Movie', movieSchema);
 
       //Starting express server, must be at bottom
 app.listen(port, () => {
