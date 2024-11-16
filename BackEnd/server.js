@@ -56,12 +56,14 @@ app.post('/api/movies',(req,res)=>{
     res.send("Movies received");
 });
 
-//Starting express server
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
 
 // Connecting to mongo DB
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://admin:admin@admin.z44it.mongodb.net/');
 
+
+
+      //Starting express server, must be at bottom
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
