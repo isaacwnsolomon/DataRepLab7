@@ -81,6 +81,16 @@ const movieSchema = new mongoose.Schema({
     res.status(201).json({ message: 'Movie created successfully', movie: newMovie });
     })
 
+    //Implement a method to fetch all movie records
+    app.get('/api/movies', async (req, res) => {
+        const movies = await Movie.find({});
+        res.json(movies);
+      });
+    //Retrieve data by ID
+      app.get('/api/movie/:id', async (req, res) => {
+        const movie = await Movie.findById(req.params.id);
+        res.send(movie);
+      });
 
       //Starting express server, must be at bottom
 app.listen(port, () => {
